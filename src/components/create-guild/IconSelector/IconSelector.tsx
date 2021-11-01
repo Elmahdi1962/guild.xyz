@@ -62,7 +62,7 @@ const IconSelector = () => {
               spacing="4"
               {...group}
             >
-              {[...Array(285).keys()].map((i) => {
+              {[...Array(286).keys()].map((i) => {
                 const radio = getRadioProps({
                   value: `/guildLogos/${i}.svg`,
                 })
