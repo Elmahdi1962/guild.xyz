@@ -16,7 +16,7 @@ import SelectorButton from "./components/SelectorButton"
 
 const getRandomInt = (max) => Math.floor(Math.random() * max)
 
-const IconSelector = () => {
+const IconSelector = (props) => {
   const { colorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { control, getValues } = useFormContext()
@@ -62,7 +62,7 @@ const IconSelector = () => {
               spacing="4"
               {...group}
             >
-              {[...Array(286).keys()].map((i) => {
+              {[...Array(props.showEasterIcon ? 287 : 286).keys()].map((i) => {
                 const radio = getRadioProps({
                   value: `/guildLogos/${i}.svg`,
                 })
