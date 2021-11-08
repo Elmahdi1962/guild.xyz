@@ -18,6 +18,7 @@ const CreateGuildPage = (): JSX.Element => {
   const { account } = useWeb3React()
   const methods = useForm({ mode: "all" })
   const [formErrors, setFormErrors] = useState(null)
+  const [updateWarn, setUpdateWarn] = useState(false)
 
   useWarnIfUnsavedChanges(
     methods.formState?.isDirty && !methods.formState.isSubmitted
@@ -42,7 +43,7 @@ const CreateGuildPage = (): JSX.Element => {
           <ErrorAnimation errors={formErrors}>
             <VStack spacing={10} alignItems="start">
               <Section title="Choose a logo and name for your Guild">
-                <NameAndIcon />
+                <NameAndIcon updateWarn={updateWarn}/>
               </Section>
 
               <Section title="Choose a Realm">
@@ -59,8 +60,10 @@ const CreateGuildPage = (): JSX.Element => {
           <Flex justifyContent="right" mt="14">
             <SubmitButton
               type="guild"
-              onErrorHandler={(errors) =>
-                setFormErrors(errors ? Object.keys(errors) : null)
+              onErrorHandler={(errors) => {
+                  setFormErrors(errors ? Object.keys(errors) : null)
+                  !updateWarn ? setUpdateWarn(true) : null
+                }
               }
             />
           </Flex>
